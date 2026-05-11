@@ -3,10 +3,15 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import tests.base.BaseTest;
+import utils.Retry;
 
 public class CheckoutTest extends BaseTest {
 
-    @Test
+    @Test (description = "E2E оформление покупки",
+            testName = "E2E оформление покупки",
+            retryAnalyzer = Retry.class)
+
     public void checkoutTest() {
 
         SoftAssert softAssert = new SoftAssert();

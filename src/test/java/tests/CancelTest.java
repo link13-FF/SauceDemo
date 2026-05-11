@@ -1,10 +1,14 @@
 package tests;
 
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
+import utils.Retry;
 
 public class CancelTest extends BaseTest {
 
-    @Test
+    @Test (description = "Нажатие кнопки 'Cancel' на странице 'Checkout: Your Information'",
+            testName = "Нажатие кнопки 'Cancel' на странице 'Checkout: Your Information'",
+            retryAnalyzer = Retry.class)
 
     public void cancelTest() {
         loginPage.open();

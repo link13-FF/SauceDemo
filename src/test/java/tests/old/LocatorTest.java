@@ -1,7 +1,8 @@
-package tests;
+package tests.old;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 public class LocatorTest extends BaseTest {
     @Test

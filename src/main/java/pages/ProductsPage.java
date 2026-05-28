@@ -1,12 +1,14 @@
 package pages;
 
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+//@Log4j
 public class ProductsPage extends BasePage {
 
-    private final By TITLE = By.cssSelector("[data-test=title]");
-    private final By BUTTON_CART = By.xpath("//a[@data-test='shopping-cart-link']");
     private final By BUTTON_ADD_TO_CART_BACKPACK = By.id("add-to-cart-sauce-labs-backpack");
     private final By BUTTON_ADD_TO_CART_TSHIRT = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
     private final By PRODUCT_NAME_BACKPACK = By.id("item_4_title_link");
@@ -16,51 +18,50 @@ public class ProductsPage extends BasePage {
     private final By DESCRIPTION_BACKPACK = By.xpath("//div[@data-test='inventory-item-desc']");
     private final By DESCRIPTION_TSHIRT = By.xpath("(//div[@data-test='inventory-item-desc'])[3]");
 
+    private final By TITLE = By.cssSelector("[data-test=title]");
+    private final By BUTTON_CART = By.xpath("//a[@data-test='shopping-cart-link']");
+    private final String PRODUCT_PAGE_URL = "/inventory.html";
+    private final String ADD_TO_CART_PATTERN =
+            "//*[text()='%s']/ancestor::div[@class='inventory_item']//button[text()='Add to cart']";
+    private final String REMOVE_ITEM_TO_CART =
+            "//*[text()='%s']/ancestor::div[@class='inventory_item']//button[text()='Remove']";
+
+
+
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
 
-    public void open() {
-        driver.get(BASE_URL + "/inventory.html");
+    @Override
+    @Step ("Открытие страницы с товарами")
+    public ProductsPage open() {
+        driver.get(BASE_URL + PRODUCT_PAGE_URL);
+        return this;
     }
 
-    public String getTitle() {
-        return driver.findElement(TITLE).getText();
+    @Override
+    public ProductsPage isPageOpened() {
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
     }
 
+    @Step ("Добавление товара с именем '{product}' в корзину")
+    public ProductsPage addToCart(String product) {
+        //log.info("Added in cart product name '{}'", product);
+        driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        return this;
+    }
+
+    @Step ("Добавление товара с именем '{product}' в корзину")
+    public ProductsPage removeFromCart(String product) {
+        //log.info("Remove from cart product name '{}'", product);
+        driver.findElement(By.xpath(String.format(REMOVE_ITEM_TO_CART, product))).click();
+        return this;
+    }
+
+    @Step ("Клик/Переход на страницу корзина")
     public void clickButtonCart() {
         driver.findElement(BUTTON_CART).click();
-    }
-
-    public void clickButtonAddToCartBackpack() {
-        driver.findElement(BUTTON_ADD_TO_CART_BACKPACK).click();
-    }
-
-    public void clickButtonAddToCartTshirt() {
-        driver.findElement(BUTTON_ADD_TO_CART_TSHIRT).click();
-    }
-
-    public String getProductNameBackpack() {
-        return driver.findElement(PRODUCT_NAME_BACKPACK).getText();
-    }
-
-    public String getProductNameTshirt() {
-        return driver.findElement(PRODUCT_NAME_TSHIRT).getText();
-    }
-
-    public String getCostOfBackpack() {
-        return driver.findElement(COST_BACKPACK).getText();
-    }
-
-    public String getCostOfTshirt() {
-        return driver.findElement(COST_TSHIRT).getText();
-    }
-
-    public String getDescriptionBackpack() {
-        return driver.findElement(DESCRIPTION_BACKPACK).getText();
-    }
-
-    public String getDescriptionTshirt() {
-        return driver.findElement(DESCRIPTION_TSHIRT).getText();
     }
 }

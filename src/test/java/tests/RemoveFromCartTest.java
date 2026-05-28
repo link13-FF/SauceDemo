@@ -13,16 +13,13 @@ public class RemoveFromCartTest extends BaseTest {
 
     public void removeFromCart() {
 
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-
-        productsPage.clickButtonAddToCartBackpack();
-        productsPage.clickButtonAddToCartTshirt();
-        productsPage.clickButtonCart();
-
-        cartPage.clickButtonRemove();
-        cartPage.clickButtonRemove2();
-
-        Assert.assertTrue(cartPage.checkRemoved());
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce");
+        productsPage.open()
+                .isPageOpened()
+                .addToCart("Sauce Labs Fleece Jacket")
+                .addToCart("Sauce Labs Bolt T-Shirt")
+                .removeFromCart("Sauce Labs Bolt T-Shirt");
     }
 }

@@ -12,12 +12,19 @@ public class ContinueTest extends BaseTest {
 
     public void cancelTest() {
 
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-
-        productsPage.clickButtonAddToCartBackpack();
-        productsPage.clickButtonAddToCartTshirt();
-        productsPage.clickButtonCart();
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce");
+        productsPage.open()
+                .isPageOpened()
+                .addToCart("Sauce Labs Fleece Jacket")
+                .addToCart("Sauce Labs Bolt T-Shirt")
+                .removeFromCart("Sauce Labs Bolt T-Shirt")
+                .clickButtonCart();
+        cartPage.open()
+                .isPageOpened()
+                .getCartProductName("Sauce Labs Fleece Jacket");
+        cartPage.getCartProductPrice("Sauce Labs Fleece Jacket");
         cartPage.clickButtonContinueShopping();
     }
 }

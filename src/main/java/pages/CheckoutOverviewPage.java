@@ -1,8 +1,12 @@
 package pages;
 
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class CheckoutOverviewPage extends BasePage{
 
     private final By TITLE_CHECKOUT_OVERVIEW = By.xpath("//span[@data-test='title']");
@@ -22,14 +26,37 @@ public class CheckoutOverviewPage extends BasePage{
     private final By BUTTON_CANCEL = By.id("cancel");
     private final By BUTTON_FINISH = By.id("finish");
 
+    private final String CHECKOUT_OVERVIEW_URL = "/checkout-step-two.html";
+
+
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
     }
 
-    public String getTitleCheckoutOverview() {
-        return driver.findElement(TITLE_CHECKOUT_OVERVIEW).getText();
+    @Override
+    public CheckoutOverviewPage open() {
+        log.info("CheckoutPageOverview Open");
+        driver.get(BASE_URL + CHECKOUT_OVERVIEW_URL);
+        return this;
     }
 
+    @Override
+    public CheckoutOverviewPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CHECKOUT_OVERVIEW));
+        return this;
+    }
+
+    public CheckoutPage clickButtonCancel() {
+        driver.findElement(BUTTON_CANCEL).click();
+        return new CheckoutPage(driver);
+    }
+
+    public CheckoutCompletePage clickButtonFinish() {
+        driver.findElement(BUTTON_FINISH).click();
+        return new CheckoutCompletePage(driver);
+    }
+
+    /*
     public String getItemName() {
         return driver.findElement(ITEM_NAME).getText();
     }
@@ -74,11 +101,6 @@ public class CheckoutOverviewPage extends BasePage{
         return driver.findElement(TOTAL_PRICE).getText();
     }
 
-    public void clickButtonCancel() {
-        driver.findElement(BUTTON_CANCEL).click();
-    }
 
-    public void clickButtonFinish() {
-        driver.findElement(BUTTON_FINISH).click();
-    }
+     */
 }

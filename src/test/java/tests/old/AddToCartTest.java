@@ -1,7 +1,8 @@
-package tests;
+package tests.old;
 
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import tests.base.BaseTest;
 
 public class AddToCartTest extends BaseTest {
 

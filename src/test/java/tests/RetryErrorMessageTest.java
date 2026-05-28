@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import tests.base.BaseTest;
 import utils.Retry;
 
-public class ErrorMessageTest extends BaseTest {
+public class RetryErrorMessageTest extends BaseTest {
 
     @Test (description = "Вызов окна ошибки на странице Checkout",
             testName = "Вызов окна ошибки на странице Checkout",
@@ -12,7 +12,7 @@ public class ErrorMessageTest extends BaseTest {
 
     public void errorMessageTest() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login("standard_user", "secret_sauc");
 
         productsPage.clickButtonAddToCartBackpack();
         productsPage.clickButtonAddToCartTshirt();

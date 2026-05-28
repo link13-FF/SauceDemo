@@ -3,9 +3,15 @@ package tests;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
+import utils.Retry;
 
-public class CartTest extends BaseTest{
-    @Test
+public class CartTest extends BaseTest {
+
+    @Test (description = "Добавление товара в корзину",
+            testName = "Добавление товара в корзину",
+            retryAnalyzer = Retry.class)
+
     public void checkCart() {
 
         loginPage.open();

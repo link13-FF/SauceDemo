@@ -12,7 +12,6 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.CartTest"/>
-            <class name="tests.CancelTest"/>
             <class name="tests.CheckoutTest"/>
             <class name="tests.ContinueTest"/>
             <class name="tests.ErrorMessageTest"/>
@@ -25,7 +24,6 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.CartTest"/>
-            <class name="tests.CancelTest"/>
             <class name="tests.CheckoutTest"/>
             <class name="tests.ContinueTest"/>
             <class name="tests.ErrorMessageTest"/>

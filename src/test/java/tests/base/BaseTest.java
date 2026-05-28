@@ -20,6 +20,8 @@ public class BaseTest {
     protected CartPage cartPage;
     protected CheckoutPage checkoutPage;
     protected CheckoutOverviewPage checkoutOverviewPage;
+    protected CheckoutCompletePage checkoutCompletePage;
+
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
@@ -45,6 +47,7 @@ public class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        checkoutCompletePage = new CheckoutCompletePage(driver);
     }
       @AfterMethod (alwaysRun = true)
     public void tearDown() {

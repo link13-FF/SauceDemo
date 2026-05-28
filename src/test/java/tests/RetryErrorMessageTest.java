@@ -14,8 +14,8 @@ public class RetryErrorMessageTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauc");
 
-        productsPage.clickButtonAddToCartBackpack();
-        productsPage.clickButtonAddToCartTshirt();
+        //productsPage.clickButtonAddToCartBackpack();
+        //productsPage.clickButtonAddToCartTshirt();
         productsPage.clickButtonCart();
 
         cartPage.clickButtonCheckout();

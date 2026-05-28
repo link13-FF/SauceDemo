@@ -13,7 +13,7 @@ public class ErrorMessageTest extends BaseTest {
     public void errorMessageTest() {
         loginPage.open()
                 .isPageOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
         productsPage.open()
                 .isPageOpened()
                 .addToCart("Sauce Labs Fleece Jacket")

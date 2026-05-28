@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     public void checkLoginWithPositiveValue() {
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         //Assert.assertEquals(productsPage.getTitle(), "Products");
     }
 
@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
             groups = {"regression"})
     public void checkLoginWithEmptyPassword() {
         loginPage.open();
-        loginPage.login("standard_user", "");
+        loginPage.login(user, "");
         Assert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Password is required");
     }
 
@@ -39,7 +39,7 @@ public class LoginTest extends BaseTest {
             groups = {"regression"})
     public void checkLoginWithEmptyUser() {
         loginPage.open();
-        loginPage.login("", "secret_sauce");
+        loginPage.login("", password);
         Assert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required");
     }
 

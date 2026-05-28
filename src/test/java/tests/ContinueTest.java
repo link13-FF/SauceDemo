@@ -14,7 +14,7 @@ public class ContinueTest extends BaseTest {
 
         loginPage.open()
                 .isPageOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
         productsPage.open()
                 .isPageOpened()
                 .addToCart("Sauce Labs Fleece Jacket")

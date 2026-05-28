@@ -23,6 +23,9 @@ public class BaseTest {
     protected CheckoutOverviewPage checkoutOverviewPage;
     protected CheckoutCompletePage checkoutCompletePage;
 
+    protected String user = System.getProperty("user");
+    protected String password = System.getProperty("password");
+
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
